@@ -84,13 +84,7 @@ namespace Address_Book
             Console.WriteLine("Contact added successfully!");
         }
 
-        internal void DisplayContacts()
-        {
-            for (int i = 0; i < contactslist.Count; i++)
-            {
-                Console.WriteLine($"[{i + 1}] {GetContactInfo(contactslist[i])}\n");
-            }
-        }
+        
 
 
         internal void EditContact(string email) // for loop to iterate through the list and edit the particular email through if statement
@@ -199,6 +193,25 @@ namespace Address_Book
                         obj.PhoneNumber = newPhonenumber;
                     }
                     break;
+            }
+
+            
+        }
+
+        internal void DisplayContacts()
+        {
+            for (int i = 0; i < contactslist.Count; i++)
+            {
+                Console.WriteLine($"[{i + 1}] {GetContactInfo(contactslist[i])}\n");
+            }
+        }
+
+        internal void DeleteContact(string email)
+        {
+            if (DoesEmailExist(email))
+            {
+                Contact obj = contactslist.Find(contact => contact.Email == email);
+                contactslist.Remove(obj);
             }
         }
     }

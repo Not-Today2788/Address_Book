@@ -21,11 +21,12 @@ namespace Address_Book
                 Console.WriteLine(" AddressBookMenu:");
                 Console.WriteLine("1. Add New Contact");
                 Console.WriteLine("2. Edit Existing Contact");
-                Console.WriteLine("3. Display All Contacts");
+                Console.WriteLine("3. Delete Contact");
+                Console.WriteLine("4. Display All Contacts");
 
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("5. Exit");
 
-                Console.Write("Enter your choice (1-2): ");
+                Console.Write("Enter your choice (1-5): ");
                 string userInput = Console.ReadLine();
 
                 switch (userInput)
@@ -53,6 +54,14 @@ namespace Address_Book
                         break;
 
                     case "3":
+                        // Delete a contact
+                        string deleteEmail = GetUserInput("Enter Email of the contact to delete");
+                        addressBook.DeleteContact(deleteEmail);
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "4":
                         // Display all contacts
                         Console.WriteLine("\nAll Contacts:");
                         addressBook.DisplayContacts();
@@ -60,7 +69,7 @@ namespace Address_Book
                         Console.ReadLine();
                         break;
 
-                    case "4":
+                    case "5":
                         // Exit the program
                         Console.WriteLine("Exiting the program. Goodbye!");
                         return;
