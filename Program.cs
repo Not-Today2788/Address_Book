@@ -78,6 +78,8 @@ namespace Address_Book
                         Console.WriteLine("Invalid choice. Please enter a valid option (1-5).");
                         break;
                 }
+
+                Console.Clear(); // Clear console for better readability
             }
         }
 
