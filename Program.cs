@@ -16,31 +16,66 @@ namespace Address_Book
         {
             AddressBook addressBook = new AddressBook();
 
-            Console.WriteLine(" Welcome to AddressBookMenu:");
-            Console.WriteLine("1. Add New Contact");
-
-            Console.WriteLine("2. Exit");
-
-            Console.Write("Enter your choice (1-2): ");
-            string userInput = Console.ReadLine();
-
-            switch (userInput)
+            while (true)
             {
-                case "1":
-                    // Add a new contact
-                    addressBook.AddContact();
-                    break;
+                Console.WriteLine(" AddressBookMenu:");
+                Console.WriteLine("1. Add New Contact");
+                Console.WriteLine("2. Edit Existing Contact");
+                Console.WriteLine("3. Display All Contacts");
 
-                case "2":
-                    // Exit the program
-                    Console.WriteLine("Exiting the program. Goodbye!");
-                    return;
+                Console.WriteLine("4. Exit");
 
-                default:
-                    Console.WriteLine("Invalid choice. Please enter a valid option (1-5).");
-                    break;
+                Console.Write("Enter your choice (1-2): ");
+                string userInput = Console.ReadLine();
+
+                switch (userInput)
+                {
+                    case "1":
+                        // Add a new contact
+                        addressBook.AddContact();
+                        break;
+
+                    
+
+                    case "2":
+                        // Edit a contact
+                        string editEmail = GetUserInput("Enter Email of the contact to edit");
+                        if (addressBook.DoesEmailExist(editEmail))
+                        {
+                            addressBook.EditContact(editEmail);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No contact found with the provided email. Contact not edited.");
+                            Console.WriteLine("Press Enter to continue...");
+                            Console.ReadLine();
+                        }
+                        break;
+
+                    case "3":
+                        // Display all contacts
+                        Console.WriteLine("\nAll Contacts:");
+                        addressBook.DisplayContacts();
+                        Console.WriteLine("Press Enter to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case "4":
+                        // Exit the program
+                        Console.WriteLine("Exiting the program. Goodbye!");
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a valid option (1-5).");
+                        break;
+                }
             }
+        }
 
+        static string GetUserInput(string prompt)
+        {
+            Console.Write($"{prompt}: ");
+            return Console.ReadLine();
         }
     }
 }

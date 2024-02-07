@@ -16,6 +16,14 @@ namespace Address_Book
             contactslist = new List<Contact>();
         }
 
+        private string GetContactInfo(Contact contact)
+        {
+            return $"Name: {contact.FirstName} {contact.LastName}\n" +
+                   $"Address: {contact.Address}, {contact.City}, {contact.State}, {contact.Country} - {contact.Zip}\n" +
+                   $"Phone Number: {contact.PhoneNumber}\n" +
+                   $"Email: {contact.Email}\n";
+        }
+
 
         public bool DoesEmailExist(string email)
         {
@@ -74,6 +82,124 @@ namespace Address_Book
 
             contactslist.Add(newContact);
             Console.WriteLine("Contact added successfully!");
+        }
+
+        internal void DisplayContacts()
+        {
+            for (int i = 0; i < contactslist.Count; i++)
+            {
+                Console.WriteLine($"[{i + 1}] {GetContactInfo(contactslist[i])}\n");
+            }
+        }
+
+
+        internal void EditContact(string email) // for loop to iterate through the list and edit the particular email through if statement
+        {
+            Console.WriteLine("Enter what you want to update");
+            Console.WriteLine("1. Email");
+            Console.WriteLine("2. firstName");
+            Console.WriteLine("3. lastName");
+            Console.WriteLine("4. Address");
+            Console.WriteLine("5. City");
+            Console.WriteLine("6. State");
+            Console.WriteLine("7. Country");
+            Console.WriteLine("8. Zip Code");
+            Console.WriteLine("9. phoneNumber");
+
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Enter the New Email: ");
+                    string newemail = Console.ReadLine();
+                    if (DoesEmailExist(newemail))
+                    {
+                        Contact obj = contactslist.Find(contact => contact.Email == email);
+                        obj.Email = newemail;
+                    }
+                    else
+                    {
+                        Console.WriteLine("This email already exists!!!");
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Enter the New firstName: ");
+                    string newfirstName = Console.ReadLine();
+                    if (DoesEmailExist(email))
+                    {
+                        Contact obj = contactslist.Find(contact => contact.Email == email);
+                        obj.FirstName = newfirstName;
+                    }
+
+                    break;
+                case 3:
+                    Console.WriteLine("Enter the New lastName: ");
+                    string newlastName = Console.ReadLine();
+                    if (DoesEmailExist(email))
+                    {
+                        Contact obj = contactslist.Find(contact => contact.Email == email);
+                        obj.LastName = newlastName;
+                    }
+                    break;
+                case 4:
+                    Console.WriteLine("Enter the new Address: ");
+                    string newAddress = Console.ReadLine();
+                    if (DoesEmailExist(email))
+                    {
+                        Contact obj = contactslist.Find(contact => contact.Email == email);
+                        obj.Address = newAddress;
+                    }
+                    break;
+                case 5:
+                    Console.WriteLine("Enter the new City: ");
+                    string newCity = Console.ReadLine();
+                    if (DoesEmailExist(email))
+                    {
+                        Contact obj = contactslist.Find(contact => contact.Email == email);
+                        obj.City = newCity;
+                    }
+                    break;
+                case 6:
+                    Console.WriteLine("Enter new State: ");
+                    string newState = Console.ReadLine();
+                    if (DoesEmailExist(email))
+                    {
+                        Contact obj = contactslist.Find(contact => contact.Email == email);
+                        obj.State = newState;
+                    }
+                    break;
+
+                case 7:
+                    Console.WriteLine("Enter new Country: ");
+                    string newCountry = Console.ReadLine();
+                    if (DoesEmailExist(email))
+                    {
+                        Contact obj = contactslist.Find(Contact => Contact.Email == email);
+                        obj.Country = newCountry;
+                    }
+                    break;
+
+                case 8:
+                    Console.WriteLine("Enter new Pincode: ");
+                    string newPincode = Console.ReadLine();
+                    if (DoesEmailExist(email))
+                    {
+                        Contact obj = contactslist.Find(contact => contact.Email == email);
+                        obj.Zip = newPincode;
+                    }
+                    break;
+
+                case 9:
+                    Console.WriteLine("Enter new phonenumber: ");
+                    string newPhonenumber = Console.ReadLine();
+                    if (DoesEmailExist(email))
+                    {
+                        Contact obj = contactslist.Find(contact => contact.Email == email);
+                        obj.PhoneNumber = newPhonenumber;
+                    }
+                    break;
+            }
         }
     }
 }
