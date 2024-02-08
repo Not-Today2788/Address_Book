@@ -11,9 +11,20 @@ namespace Address_Book
     {
         private List<Contact> contactslist;
 
-        public AddressBook()
+        public AddressBook(string bookName, Dictionary<string, List<Contact>> MultiAddressBookDictionary)
         {
             contactslist = new List<Contact>();
+            MultiAddressBookDictionary[bookName] = contactslist;
+        }
+
+        public void switching_address_book(string bookName, Dictionary<string, List<Contact>> MultiAddressBookDictionary)
+        {
+            contactslist = MultiAddressBookDictionary[bookName];
+        }
+
+        public void deleting_address_book(string bookName, Dictionary<string, List<Contact>> MultiAddressBookDictionary)
+        {
+            MultiAddressBookDictionary.Remove(bookName);
         }
 
         private string GetContactInfo(Contact contact)
