@@ -46,7 +46,7 @@ namespace Address_Book
 
                 Console.WriteLine("9. Exit");
 
-                Console.Write("Enter your choice (1-5): ");
+                Console.Write("Enter your choice (1-9): ");
                 string userInput = Console.ReadLine();
 
                 switch (userInput)
@@ -116,7 +116,16 @@ namespace Address_Book
                         }
 
                         Console.WriteLine("Enter the AddressBook name you want to switch to:  ");
-                        bookName= Console.ReadLine();
+                        string inputname= Console.ReadLine();
+                        if(MultiAddressBookObject.get_MultiAddressBookDictionary().ContainsKey(inputname))
+                        {
+                            bookName = inputname;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nPlease enter a valid name!!!!\n");
+                        }
+                        Console.ReadLine();
                         break;
 
                     case "8":
